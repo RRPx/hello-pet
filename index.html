@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello Pet Device™ - Product Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background-color: #fff;
+        color: #333;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .logo {
+        font-weight: bold;
+        color: #1e3a8a;
+        text-decoration: none;
+        font-size: 20px;
+      }
+
+      .logo img {
+        height: 24px;
+      }
+
+      .nav-left {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-left a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .cart-icon {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #ff5252;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      /* Product Section */
+      .product-container {
+        display: flex;
+        padding: 40px;
+        gap: 40px;
+      }
+
+      .product-images {
+        width: 40%;
+      }
+
+      .main-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 8px;
+      }
+
+      .thumbnail-gallery {
+        display: flex;
+        gap: 10px;
+      }
+
+      .thumbnail {
+        width: 70px;
+        height: 70px;
+        border-radius: 8px;
+        cursor: pointer;
+        object-fit: cover;
+      }
+
+      .product-info {
+        width: 50%;
+      }
+
+      .product-tag {
+        display: inline-block;
+        background-color: #2563eb;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+
+      .stars {
+        color: #ffc107;
+      }
+
+      .review-count {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .product-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1e3a8a;
+        margin-bottom: 15px;
+      }
+
+      .verified-buyer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .buyer-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+
+      .testimonial {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        font-style: italic;
+        margin-bottom: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .feature-list {
+        margin-bottom: 20px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .feature-icon {
+        color: #2563eb;
+        font-weight: bold;
+      }
+
+      .price-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .original-price {
+        text-decoration: line-through;
+        color: #666;
+        font-size: 18px;
+      }
+
+      .current-price {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1e3a8a;
+      }
+
+      .add-to-cart {
+        background-color: #22c55e;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        overflow: hidden;
+        width: fit-content;
+        margin-bottom: 15px;
+      }
+
+      .quantity-btn {
+        background: none;
+        border: none;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .quantity-input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        font-size: 16px;
+      }
+
+      .payment-methods {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .payment-icon {
+        width: 40px;
+        height: 25px;
+        object-fit: contain;
+      }
+
+      .shipping-info {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Reviews Section */
+      .reviews-section {
+        padding: 40px;
+      }
+
+      .reviews-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #1e3a8a;
+      }
+
+      .overall-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .rating-number {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .rating-stars {
+        color: #ffc107;
+        font-size: 20px;
+      }
+
+      .rating-count {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .rating-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .rating-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .star-label {
+        width: 70px;
+        font-size: 14px;
+      }
+
+      .bar-container {
+        flex: 1;
+        height: 8px;
+        background-color: #eee;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        height: 100%;
+        background-color: #1e3a8a;
+      }
+
+      .bar-count {
+        width: 30px;
+        font-size: 14px;
+        color: #666;
+        text-align: right;
+      }
+
+      .review-images {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .review-image {
+        width: 70px;
+        height: 70px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .review-item {
+        border-top: 1px solid #eee;
+        padding: 20px 0;
+      }
+
+      .reviewer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .reviewer-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .reviewer-info {
+        flex: 1;
+      }
+
+      .reviewer-name {
+        font-weight: 600;
+      }
+
+      .reviewer-badge {
+        display: inline-block;
+        background-color: #e5f7ed;
+        color: #22c55e;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+
+      .review-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+
+      .review-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .review-text {
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      .review-image-small {
+        width: 60px;
+        height: 60px;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      .menu-icon,
+      .mobile-cart {
+        display: none;
+      }
+
+      /* Cart Drawer */
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100vh;
+        background-color: white;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+      }
+
+      .cart-drawer.open {
+        right: 0;
+      }
+
+      .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .cart-title {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .close-cart {
+        background: none;
+        border: 1px solid #ddd;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .shipping-banner {
+        background-color: #fff9e6;
+        padding: 15px 20px;
+        margin: 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cart-content {
+        padding: 0 20px;
+      }
+
+      .cart-labels {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        font-weight: 600;
+      }
+
+      .cart-item {
+        display: flex;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .cart-item-image {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-right: 15px;
+      }
+
+      .cart-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .cart-item-details {
+        flex: 1;
+      }
+
+      .cart-item-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-price {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-variant {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .cart-quantity {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .cart-quantity-btn {
+        background: none;
+        border: none;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .cart-quantity-input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        font-size: 14px;
+      }
+
+      .remove-item {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #666;
+        font-size: 18px;
+      }
+
+      .cart-item-total {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 80px;
+      }
+
+      .cart-footer {
+        padding: 20px;
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        border-top: 1px solid #eee;
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .checkout-btn {
+        background-color: #ffcc00;
+        color: black;
+        border: none;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 15px 20px;
+        }
+
+        .nav-left,
+        .nav-right {
+          display: none;
+        }
+
+        .menu-icon,
+        .mobile-cart {
+          display: block;
+        }
+
+        .mobile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .product-container {
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+        }
+
+        .product-images,
+        .product-info {
+          width: 100%;
+        }
+
+        .thumbnail-gallery {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 5px;
+        }
+
+        .thumbnail {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1/1;
+        }
+
+        .product-title {
+          font-size: 24px;
+        }
+
+        .verified-buyer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .price-container {
+          justify-content: center;
+        }
+
+        .add-to-cart-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .quantity-selector {
+          margin-left: 0;
+          margin-bottom: 15px;
+        }
+
+        .reviews-section {
+          padding: 20px;
+        }
+
+        .review-images {
+          overflow-x: auto;
+          flex-wrap: nowrap;
+          padding-bottom: 10px;
+        }
+
+        .review-image {
+          flex-shrink: 0;
+        }
+
+        .cart-drawer {
+          width: 100%;
+          right: -100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="mobile-header">
+        <div class="menu-icon">☰</div>
+        <a href="#" class="logo">
+          <img
+            src="/placeholder.svg?height=24&width=100&text=hello pet"
+            alt="Hello Pet Logo"
+          />
+        </a>
+        <div class="mobile-cart" onclick="openCart()">
+          <span>🛒</span>
+          <span class="cart-count">1</span>
+        </div>
+      </div>
+      <div class="nav-left">
+        <a href="#">Shop</a>
+        <a href="#">Our Story</a>
+        <a href="#">Features</a>
+        <a href="#">Results</a>
+      </div>
+      <div class="nav-right">
+        <span>ENG</span>
+        <span>USD</span>
+        <div class="cart-icon" onclick="openCart()">
+          <span>🛒</span>
+          <span class="cart-count">1</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="product-container">
+      <div class="product-images">
+        <img
+          src="/images/i_1.png"
+          alt="Hello Pet Device being used on a golden retriever"
+          class="main-image"
+        />
+        <div class="thumbnail-gallery">
+          <img src="/images/i_2.png" alt="Thumbnail 1" class="thumbnail" />
+          <img src="/images/i_3.png" alt="Thumbnail 2" class="thumbnail" />
+          <img src="/images/i_4.png" alt="Thumbnail 3" class="thumbnail" />
+          <img src="/images/i_5.png" alt="Thumbnail 4" class="thumbnail" />
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="rating">
+          <div class="stars">★★★★★</div>
+          <span class="review-count">4.9 (120 reviews)</span>
+        </div>
+        <h1 class="product-title">Hello Pet Device™</h1>
+        <div class="verified-buyer">
+          <img
+            src="/placeholder.svg?height=30&width=30"
+            alt="Buyer avatar"
+            class="buyer-avatar"
+          />
+          <span
+            >"I'm so ENTHUSIASTIC! I purchased this for my 12 year old golden
+            retriever who suffers from arthritis in her back legs. It's made a
+            noticeable difference in her mobility."</span
+          >
+        </div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Reduces stress & pain with 5-minute sessions</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Laser Therapy helps with Pain, Inflammation & more</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Professional Grade | 1-Year 1-Laser Device</span>
+          </div>
+        </div>
+        <div class="price-container">
+          <span class="current-price">$249.00</span>
+        </div>
+        <div class="quantity-selector">
+          <button class="quantity-btn">-</button>
+          <input type="text" value="1" class="quantity-input" />
+          <button class="quantity-btn">+</button>
+        </div>
+        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        <div class="payment-methods">
+          <img
+            src="/placeholder.svg?height=25&width=40"
+            alt="Visa"
+            class="payment-icon"
+          />
+          <img
+            src="/placeholder.svg?height=25&width=40"
+            alt="Mastercard"
+            class="payment-icon"
+          />
+          <img
+            src="/placeholder.svg?height=25&width=40"
+            alt="PayPal"
+            class="payment-icon"
+          />
+          <img
+            src="/placeholder.svg?height=25&width=40"
+            alt="Apple Pay"
+            class="payment-icon"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+      <div class="overall-rating">
+        <span class="rating-number">4.8</span>
+        <div class="rating-stars">★★★★★</div>
+        <span class="rating-count">Based on 482 Reviews</span>
+      </div>
+
+      <div class="rating-bars">
+        <div class="rating-bar">
+          <span class="star-label">5 stars</span>
+          <div class="bar-container">
+            <div class="bar-fill" style="width: 80%"></div>
+          </div>
+          <span class="bar-count">385</span>
+        </div>
+        <div class="rating-bar">
+          <span class="star-label">4 stars</span>
+          <div class="bar-container">
+            <div class="bar-fill" style="width: 15%"></div>
+          </div>
+          <span class="bar-count">72</span>
+        </div>
+        <div class="rating-bar">
+          <span class="star-label">3 stars</span>
+          <div class="bar-container">
+            <div class="bar-fill" style="width: 4%"></div>
+          </div>
+          <span class="bar-count">19</span>
+        </div>
+        <div class="rating-bar">
+          <span class="star-label">2 stars</span>
+          <div class="bar-container">
+            <div class="bar-fill" style="width: 1%"></div>
+          </div>
+          <span class="bar-count">5</span>
+        </div>
+        <div class="rating-bar">
+          <span class="star-label">1 star</span>
+          <div class="bar-container">
+            <div class="bar-fill" style="width: 0%"></div>
+          </div>
+          <span class="bar-count">1</span>
+        </div>
+      </div>
+
+      <div class="review-images">
+        <img
+          src="/placeholder.svg?height=70&width=70"
+          alt="Customer review image 1"
+          class="review-image"
+        />
+        <img
+          src="/placeholder.svg?height=70&width=70"
+          alt="Customer review image 2"
+          class="review-image"
+        />
+        <img
+          src="/placeholder.svg?height=70&width=70"
+          alt="Customer review image 3"
+          class="review-image"
+        />
+        <img
+          src="/placeholder.svg?height=70&width=70"
+          alt="Customer review image 4"
+          class="review-image"
+        />
+        <img
+          src="/placeholder.svg?height=70&width=70"
+          alt="Customer review image 5"
+          class="review-image"
+        />
+        <img
+          src="/placeholder.svg?height=70&width=70"
+          alt="Customer review image 6"
+          class="review-image"
+        />
+      </div>
+
+      <div class="review-item">
+        <div class="reviewer">
+          <img
+            src="/placeholder.svg?height=40&width=40"
+            alt="Reviewer avatar"
+            class="reviewer-avatar"
+          />
+          <div class="reviewer-info">
+            <span class="reviewer-name">Sandra L.</span>
+            <span class="reviewer-badge">Verified Buyer</span>
+          </div>
+        </div>
+        <div class="review-rating">
+          <div class="stars">★★★★★</div>
+          <span>5.0</span>
+        </div>
+        <h3 class="review-title">Excellent product</h3>
+        <p class="review-text">
+          I bought this for my 10-year-old dog to help with his joint pain, and
+          it's made a huge difference! He seems more comfortable and active
+          after just a few sessions.
+        </p>
+        <img
+          src="/placeholder.svg?height=60&width=60"
+          alt="Review image"
+          class="review-image-small"
+        />
+      </div>
+
+      <div class="review-item">
+        <div class="reviewer">
+          <img
+            src="/placeholder.svg?height=40&width=40"
+            alt="Reviewer avatar"
+            class="reviewer-avatar"
+          />
+          <div class="reviewer-info">
+            <span class="reviewer-name">Mark T.</span>
+            <span class="reviewer-badge">Verified Buyer</span>
+          </div>
+        </div>
+        <div class="review-rating">
+          <div class="stars">★★★★★</div>
+          <span>5.0</span>
+        </div>
+        <h3 class="review-title">Amazing!</h3>
+        <p class="review-text">
+          My dog had surgery on his knee and was having a hard time with pain. I
+          used this device as recommended by our vet and saw improvement within
+          days. Highly recommend!
+        </p>
+        <img
+          src="/placeholder.svg?height=60&width=60"
+          alt="Review image"
+          class="review-image-small"
+        />
+      </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+      <div class="cart-header">
+        <h2 class="cart-title">Your cart</h2>
+        <button class="close-cart" onclick="closeCart()">✕</button>
+      </div>
+
+      <div class="shipping-banner">
+        <span>🎉</span>
+        <p>Your order is eligible for standard free shipping!</p>
+      </div>
+
+      <div class="cart-content">
+        <div class="cart-labels">
+          <span>Product</span>
+          <span>Total</span>
+        </div>
+
+        <div class="cart-item">
+          <div class="cart-item-image">
+            <img
+              src="/placeholder.svg?height=80&width=80"
+              alt="Hello Pet Device"
+            />
+          </div>
+          <div class="cart-item-details">
+            <h3 class="cart-item-title">Hello Pet Device™</h3>
+            <p class="cart-item-price">$249<sup>00</sup></p>
+            <p class="cart-item-variant">Color: Red</p>
+            <div class="cart-item-controls">
+              <div class="cart-quantity">
+                <button class="cart-quantity-btn">−</button>
+                <input type="text" value="1" class="cart-quantity-input" />
+                <button class="cart-quantity-btn">+</button>
+              </div>
+              <button class="remove-item">🗑️</button>
+            </div>
+          </div>
+          <div class="cart-item-total">$249<sup>00</sup></div>
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Estimated total</span>
+          <span>$249<sup>00</sup> USD</span>
+        </div>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+    <script>
+      function openCart() {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("overlay").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeCart() {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("overlay").classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function addToCart() {
+        // Get the quantity
+        const quantity = document.querySelector(".quantity-input").value;
+
+        // Update cart quantity display
+        const cartCountElements = document.querySelectorAll(".cart-count");
+        cartCountElements.forEach((element) => {
+          element.textContent = quantity;
+        });
+
+        // Update cart item quantity
+        document.querySelector(".cart-quantity-input").value = quantity;
+
+        // Calculate and update total
+        const price = 249;
+        const total = price * parseInt(quantity);
+        const formattedTotal = `$${total}<sup>00</sup>`;
+
+        document.querySelector(".cart-item-total").innerHTML = formattedTotal;
+        document.querySelector(
+          ".cart-total span:last-child"
+        ).innerHTML = `${formattedTotal} USD`;
+
+        // Open the cart
+        openCart();
+      }
+
+      // Add event listeners for quantity buttons on product page
+      const quantityBtns = document.querySelectorAll(".quantity-btn");
+      const quantityInput = document.querySelector(".quantity-input");
+
+      quantityBtns[0].addEventListener("click", function () {
+        let value = parseInt(quantityInput.value);
+        if (value > 1) {
+          quantityInput.value = value - 1;
+        }
+      });
+
+      quantityBtns[1].addEventListener("click", function () {
+        let value = parseInt(quantityInput.value);
+        quantityInput.value = value + 1;
+      });
+
+      // Add event listeners for quantity buttons in cart
+      const cartQuantityBtns = document.querySelectorAll(".cart-quantity-btn");
+      const cartQuantityInput = document.querySelector(".cart-quantity-input");
+
+      cartQuantityBtns[0].addEventListener("click", function () {
+        let value = parseInt(cartQuantityInput.value);
+        if (value > 1) {
+          cartQuantityInput.value = value - 1;
+          updateCartTotal();
+        }
+      });
+
+      cartQuantityBtns[1].addEventListener("click", function () {
+        let value = parseInt(cartQuantityInput.value);
+        cartQuantityInput.value = value + 1;
+        updateCartTotal();
+      });
+
+      function updateCartTotal() {
+        const quantity = parseInt(
+          document.querySelector(".cart-quantity-input").value
+        );
+        const price = 249;
+        const total = price * quantity;
+        const formattedTotal = `$${total}<sup>00</sup>`;
+
+        document.querySelector(".cart-item-total").innerHTML = formattedTotal;
+        document.querySelector(
+          ".cart-total span:last-child"
+        ).innerHTML = `${formattedTotal} USD`;
+
+        // Update cart count
+        const cartCountElements = document.querySelectorAll(".cart-count");
+        cartCountElements.forEach((element) => {
+          element.textContent = quantity;
+        });
+      }
+
+      // Remove item functionality
+      document
+        .querySelector(".remove-item")
+        .addEventListener("click", function () {
+          this.closest(".cart-item").remove();
+          document.querySelector(".cart-total span:last-child").innerHTML =
+            "$0<sup>00</sup> USD";
+
+          // Update cart count
+          const cartCountElements = document.querySelectorAll(".cart-count");
+          cartCountElements.forEach((element) => {
+            element.textContent = "0";
+          });
+        });
+    </script>
+  </body>
+</html>
